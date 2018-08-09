@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Simple Chat</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
+
+<body>
+  <div class="app">
+    <div class="chat">
+      <div class="chat__message-list"></div>
+      <div class="chat__compose">
+        <form class="message-form">
+          <div class="message-form__input-box">
+            <input class="message-form__input" name="message" placeholder="Message...">
+          </div>
+          <button class="message-form__submit-button" type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+*,
+* > * {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.app {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  font-family: 'Lato', sans-serif;
+}
+
+.chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/*---------------------------
+--- Message List 
+-----------------------------*/
+
+.chat__message-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  padding: 2rem;
+  background-color: #64b5f6;
+}
+
+.message {
+  padding: 1rem;
+  border-radius: 1.5rem;
+  margin-bottom: 1.2rem;
+  color: #333;
+  font-size: 1.4rem;
+}
+
+.message--sent {
+  background-color: #9cf634;
+  align-self: flex-end;
+}
+
+.message--received {
+  background-color: #efefef;
+  align-self: flex-start;
+}
+
+/*---------------------------
+--- Compose 
+-----------------------------*/
+.chat__compose {
+  display: flex;
+  background-color: #fafafa;
+  box-shadow: #05050521 0px -8px 20px 3px;
+  z-index: 10;
+}
+
+.message-form {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.message-form__input-box {
+  flex: 2 1 50%;
+  display: flex;
+  padding: 1rem 0.5rem;
+}
+
+.message-form__input {
+  flex: 1;
+  padding: 0.7rem 1.4rem;
+  border-radius: 2rem;
+  border: 1px solid #888;
+  border: none;
+  font-size: 1.4rem;
+  background-color: #efefef;
+  color: #333;
+  width: 0;
+}
+
+.message-form__input:focus {
+  outline: none;
+}
+
+.message-form__submit-button {
+  font-size: 1.4rem;
+  flex: 1 1;
+  margin: 0.3rem;
+  color: #333;
+  background-color: transparent;
+  border: none;
+}
