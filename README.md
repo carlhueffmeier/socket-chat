@@ -1,6 +1,6 @@
 # Simple Chat App
 
-Simple chat application using Node.js, Koa and Socket.io.
+Simple chat application using Socket.io, Node.js, Koa and MySQL for persistency.
 
 ## Getting started
 
@@ -16,4 +16,4 @@ npm install
 npm start
 ```
 
-3. Access [http://localhost:3000/](http://localhost:3000/)
+3. Access [http://localhost:5005/](http://localhost:5005/)
