@@ -13,10 +13,69 @@ body {
 }
 
 .app {
+  position: relative;
   flex: 1;
   display: flex;
   overflow: hidden;
   font-family: 'Lato', sans-serif;
+}
+
+/*---------------------------
+--- Login Modal
+-----------------------------*/
+
+.modal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.712);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding: 2rem;
+}
+
+.login__input {
+  font-size: 1.4rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+  border: none;
+  border-bottom: 1px solid rgba(136, 136, 136, 0.198);
+  text-align: center;
+  color: #555;
+}
+
+.login__input:focus {
+  outline: transparent;
+  border-bottom: 1px solid rgba(121, 207, 203, 0.746);
+}
+
+.login__input:invalid + .login__button {
+  background-color: #555;
+  opacity: 0.5;
+}
+
+.login__button {
+  font-size: 1.4rem;
+  background-color: #009688;
+  color: white;
+  padding: 0.5rem 2rem;
+  border: none;
 }
 
 .chat {
@@ -36,14 +95,37 @@ body {
   overflow: auto;
   padding: 2rem;
   background-color: #64b5f6;
+  -webkit-overflow-scrolling: touch;
 }
 
 .message {
-  padding: 1rem;
+  position: relative;
+  padding: 0.8rem 1.2rem;
   border-radius: 1.5rem;
   margin-bottom: 1.2rem;
   color: #333;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+}
+
+.message__system {
+  align-self: center;
+  border-radius: 0.2rem;
+  background-color: #546e7a;
+  color: white;
+  padding: 0.4rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+
+.message__author {
+  position: absolute;
+  top: -1rem;
+  left: 0;
+  font-size: 0.8rem;
+  color: white;
+  font-weight: 700;
+  width: 100%;
+  padding: 0 1.4rem;
 }
 
 .message--sent {
@@ -51,9 +133,17 @@ body {
   align-self: flex-end;
 }
 
+.message--sent > .message__author {
+  text-align: right;
+}
+
 .message--received {
   background-color: #efefef;
   align-self: flex-start;
+}
+
+.message--received > .message__author {
+  text-align: left;
 }
 
 /*---------------------------
@@ -81,10 +171,9 @@ body {
 .message-form__input {
   flex: 1;
   padding: 0.7rem 1.4rem;
-  border-radius: 2rem;
-  border: 1px solid #888;
+  border-radius: 1rem;
   border: none;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   background-color: #efefef;
   color: #333;
   width: 0;
@@ -95,7 +184,7 @@ body {
 }
 
 .message-form__submit-button {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   flex: 1 1;
   margin: 0.3rem;
   color: #333;

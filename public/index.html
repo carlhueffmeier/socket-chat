@@ -6,12 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Simple Chat</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="white">
+  <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
 </head>
 
 <body>
   <div class="app">
+    <div class="modal">
+      <div class="login">
+        <form class="login__form">
+          <input class="login__input" name="username" placeholder="Username..." minlength="3" required>
+          <button class="login__button" type="submit">Let's go</button>
+        </form>
+      </div>
+    </div>
     <div class="chat">
       <div class="chat__message-list"></div>
       <div class="chat__compose">
