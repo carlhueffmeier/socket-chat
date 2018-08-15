@@ -1,47 +1,39 @@
-const mysql = require('mysql');
-const SQL = {
-  CREATE_MESSAGE_TABLE: `CREATE TABLE if not exists messages(
-    message_id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    author VARCHAR(30) CHARACTER SET utf8mb4 NOT NULL,
-    message VARCHAR(500) CHARACTER SET utf8mb4 NOT NULL
-  );`,
-  SET_ENCODING: `SET NAMES 'utf8mb4';`,
-  INSERT_MESSAGE: `INSERT INTO 
-  messages(author, message) VALUE(?, ?);`,
-  ALL_MESSAGES: `SELECT author, message FROM messages;`
-};
+const Sequelize = require('sequelize');
+const config = require('./config.js');
 
-const pool = mysql.createPool({
-  connectionLimit: 10,
-  charset: 'utf8mb4',
-  ...require('./config.js').mySqlConnectionSettings
+const sequelize = new Sequelize(config.database, {
+  dialectOptions: {
+    charset: 'utf8mb4'
+  },
+  define: {
+    charset: 'utf8mb4',
+    collation: 'utf8mb4_col'
+  }
 });
 
-pool.query(SQL.CREATE_MESSAGE_TABLE, err => {
-  if (err) throw err;
-});
-pool.query(SQL.SET_ENCODING);
+const Message = sequelize.define(
+  'message',
+  {
+    author: Sequelize.STRING,
+    content: Sequelize.TEXT
+  },
+  {
+    freezeTableName: true
+  }
+);
 
-exports.getAllMessages = () => {
-  return new Promise((resolve, reject) => {
-    pool.query(SQL.ALL_MESSAGES, (err, results) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(results);
-      }
-    });
-  });
+// Create tables if necessary
+const dbReady = Message.sync();
+
+exports.getAllMessages = async () => {
+  await dbReady;
+  return Message.findAll();
 };
 
-exports.addMessage = ({ author, message } = {}) => {
-  return new Promise((resolve, reject) => {
-    pool.query(SQL.INSERT_MESSAGE, [author, message], err => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve();
-      }
-    });
+exports.addMessage = async ({ author, content } = {}) => {
+  await dbReady;
+  return Message.create({
+    author,
+    content
   });
 };

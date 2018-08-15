@@ -38,7 +38,7 @@ function handleSubmit(event) {
   if (messageText) {
     let message = {
       author: user.name,
-      message: messageText
+      content: messageText
     };
     socket.emit('message', message);
     $messageInput.value = '';
@@ -46,14 +46,14 @@ function handleSubmit(event) {
   }
 }
 
-function addMessage({ author, message } = {}) {
+function addMessage({ author, content } = {}) {
   var $message = document.createElement('div');
   var $messageAuthor = document.createElement('span');
 
   $message.classList.add('message');
   $messageAuthor.classList.add('message__author');
 
-  $message.textContent = message;
+  $message.textContent = content;
 
   // Set different classes depending on origin
   if (author === user.name) {
@@ -82,8 +82,8 @@ function appendToMessageList($message) {
   $messageList.scrollTop = $messageList.scrollHeight;
 }
 
-function restoreMessages(data) {
-  if (data) {
-    data.forEach(row => addMessage(row));
+function restoreMessages(messagesToRestore) {
+  if (messagesToRestore) {
+    messagesToRestore.forEach(message => addMessage(message));
   }
 }

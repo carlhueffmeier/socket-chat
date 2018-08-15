@@ -25,9 +25,11 @@ io.on('connect', socket => {
     });
 
   // Broadcast every message to all clients 📯
-  socket.on('message', data => {
-    console.log(chalk.red.bold(`✉️  [${data.author}]: "${data.message}"`));
-    model.addMessage(data);
-    socket.broadcast.emit('message', data);
+  socket.on('message', message => {
+    console.log(
+      chalk.red.bold(`✉️  [${message.author}]: "${message.content}"`)
+    );
+    model.addMessage(message);
+    socket.broadcast.emit('message', message);
   });
 });
